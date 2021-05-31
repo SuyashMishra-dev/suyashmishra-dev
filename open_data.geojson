@@ -1,0 +1,163 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Result",
+    "description": "Schema for Vespa results",
+    "type": "object",
+
+
+    "properties": {
+        "root": {
+            "type": "document_node",
+            "required": true
+        },
+        "trace": {
+            "type": "trace_node",
+            "required": false
+        }
+    },
+
+    "definitions": {
+        "document_node": {
+            "properties": {
+                "children": {
+                    "type": "array",
+                    "items": {
+                        "type": "document_node"
+                    },
+                    "required": false
+                },
+                "coverage": {
+                    "type": "coverage",
+                    "required": false
+                },
+                "errors": {
+                    "type": "array",
+                    "items": {
+                        "type": "error"
+                    },
+                    "required": false
+                },
+                "fields": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "required": false
+                },
+                "id": {
+                    "type": "string",
+                    "required": false
+                },
+                "relevance": {
+                    "type": "number",
+                    "required": true
+                },
+                "types": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "required": false
+                },
+                "source": {
+                    "type": "string",
+                    "required": false
+                },
+                "value": {
+                    "type": "string",
+                    "required": false
+                },
+                "limits": {
+                    "type": "object",
+                    "required": false
+                },
+                "label": {
+                    "type": "string",
+                    "required": false
+                }
+            },
+            "additionalProperties": true,
+        },
+        "trace_node": {
+            "properties": {
+                "children": {
+                    "type": "array",
+                    "items": {
+                        "type": "trace_node"
+                    },
+                    "required": false
+                },
+                "timestamp": {
+                    "type": "number",
+                    "required": false
+                },
+                "message": {
+                    "type": "string",
+                    "required": false
+                }
+            }
+        },
+        "fields": {
+            "properties": {
+                "totalCount": {
+                    "type": "number",
+                    "required": true
+                }
+            }
+        },
+        "coverage": {
+            "properties": {
+                "coverage": {
+                    "type": "number",
+                    "required": true
+                },
+                "documents": {
+                    "type": "number",
+                    "required": true
+                },
+                "full": {
+                    "type": "boolean",
+                    "required": true
+                },
+                "nodes": {
+                    "type": "number",
+                    "required": true
+                },
+                "results": {
+                    "type": "number",
+                    "required": true
+                },
+                "resultsFull": {
+                    "type": "number",
+                    "required": true
+                }
+            }
+        },
+        "error": {
+            "properties": {
+                "code": {
+                    "type": "number",
+                    "required": true
+                },
+                "message": {
+                    "type": "string",
+                    "required": false
+                },
+                "source": {
+                    "type": "string",
+                    "required": false
+                },
+                "stackTrace": {
+                    "type": "string",
+                    "required": false
+                },
+                "summary": {
+                    "type": "string",
+                    "required": true
+                },
+                "transient": {
+                    "type": "boolean",
+                    "required": false
+                }
+            }
+        }
+    }
+}
